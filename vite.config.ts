@@ -5,6 +5,7 @@ import { fileURLToPath, URL } from 'node:url';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: { proxy: { '/api/beta': { target: 'http://127.0.0.1:4318', changeOrigin: false } } },
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },

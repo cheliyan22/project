@@ -31,7 +31,13 @@ Real things to talk about:
 - Register a project, claim one, rebuild it as a placed building (buy → place, rotation, collision-checked).
 - The community votes on which dead project gets revived next (ideas feed, upvotes, roadmap).
 - "Share this view" captures your actual city and exports a 1200×630 branded card.
-- Beta waitlist with invite links: every builder who joins through your code moves you 12 hours closer to the front.
+<!-- coderabbit-ai-generated:v1 -->
+
+<!-- coderabbit-ai-generated-section:v1:f814d2ed5a1b08cd225b2f4e88a311ef07088b537f101e594840cae827ebf315 -->
+
+- Beta waitlist accepts private registration requests. Invite links and referral queue details are available only to signed-in Supabase accounts with a verified email matching the registration; public submissions return a uniform receipt.
+
+<!-- /coderabbit-ai-generated:v1 -->
 
 Not yet true — never promise it: launch discounts, credits-per-invite, public
 beta dates, follower counts, "10,000 builders waiting."
@@ -82,8 +88,14 @@ beta dates, follower counts, "10,000 builders waiting."
 ## The loop, spelled out
 
 1. Post → reader clicks → lands on `/beta/?ref=YOURCODE`
-2. They register → they see their position + get their own invite link
-3. Their invite → joins attributed to them → both move up the queue
+<!-- coderabbit-ai-generated:v1 -->
+
+<!-- coderabbit-ai-generated-section:v1:76892935dc55aae212277b081e8fa4146a20302f105a31d3fe4129834f66f6b7 -->
+
+2. They submit an email → receive a privacy-preserving receipt.
+3. After signing in with a verified matching email, they can retrieve their own invite link and queue details. A join through that link credits the referrer with a 12-hour queue boost. Isolated Supabase email confirmation must be configured before this verified referral flow is advertised as available.
+
+<!-- /coderabbit-ai-generated:v1 -->
 4. Every registered name makes the counter on the beta page worth sharing
 
 Referral codes are 8-hex uppercase, allocated server-side, never guessed or

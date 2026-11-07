@@ -1,0 +1,240 @@
+/* First-run introduction, in the orbital-plate language: near-black sky, gold
+   hairlines, Georgia display, mono micro-labels, one teal accent. */
+.project-intro {
+  --pi-sky: #05070a;
+  --pi-ink: #04080b;
+  --pi-gold: #b08a4a;
+  --pi-gold-soft: rgba(176, 138, 74, 0.26);
+  --pi-text: #f4f0e8;
+  --pi-muted: #9aa8ac;
+  --pi-accent: #7fe8d0;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 8%, #0b1620 0%, transparent 62%),
+    radial-gradient(ellipse 120% 80% at 50% 120%, #0a1a1c 0%, transparent 60%),
+    var(--pi-sky);
+  color: var(--pi-text);
+  overflow: hidden;
+}
+
+/* Orbital motif: three hairlines and a horizon glow. Purely decorative. */
+.pi-sky { position: absolute; inset: 0; pointer-events: none; }
+.pi-orbit {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  border: 1px solid var(--pi-gold-soft);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.pi-orbit--outer { width: min(1180px, 128vmin); height: min(1180px, 128vmin); animation: pi-turn 180s linear infinite; }
+.pi-orbit--mid { width: min(880px, 96vmin); height: min(880px, 96vmin); animation: pi-turn 140s linear infinite reverse; }
+.pi-orbit--inner { width: min(600px, 66vmin); height: min(600px, 66vmin); border-color: rgba(176, 138, 74, 0.14); }
+.pi-horizon {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -18%;
+  height: 46%;
+  background: radial-gradient(ellipse 50% 100% at 50% 100%, rgba(127, 232, 208, 0.14) 0%, transparent 70%);
+  filter: blur(2px);
+}
+
+@keyframes pi-turn { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* Top rail */
+.pi-rail {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px clamp(18px, 4vw, 44px);
+  border-bottom: 1px solid rgba(176, 138, 74, 0.16);
+}
+
+.pi-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  font: 9px/1 ui-monospace, monospace;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #d9c9a6;
+}
+
+.pi-brand span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--pi-accent);
+  box-shadow: 0 0 8px rgba(127, 232, 208, 0.8);
+}
+
+.pi-rail-right { display: flex; align-items: center; gap: 18px; }
+
+.pi-count {
+  margin: 0;
+  font: 9px/1 ui-monospace, monospace;
+  letter-spacing: 0.2em;
+  color: #7d8a8c;
+}
+
+.pi-skip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid rgba(154, 168, 172, 0.24);
+  background: transparent;
+  color: #b9c4c2;
+  font: 9px/1 ui-monospace, monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.pi-skip:hover { color: var(--pi-text); border-color: rgba(244, 240, 232, 0.4); }
+
+/* Stage */
+.pi-stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(18px, 7vw, 96px);
+}
+
+.pi-copy {
+  max-width: 620px;
+  animation: pi-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pi-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.pi-kicker {
+  margin: 0 0 18px;
+  font: 9px/1 ui-monospace, monospace;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c8b48c;
+}
+
+.pi-copy h1 {
+  margin: 0;
+  font: 400 clamp(38px, 5.6vw, 76px)/1.04 Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.035em;
+  color: var(--pi-text);
+}
+
+.pi-copy h1 em { font-style: italic; color: #f0e4cd; }
+
+.pi-rule {
+  display: block;
+  width: 54px;
+  height: 1px;
+  margin: 22px 0;
+  background: linear-gradient(90deg, var(--pi-gold), transparent);
+}
+
+.pi-body {
+  margin: 0;
+  max-width: 52ch;
+  font: 15px/1.65 Inter, system-ui, sans-serif;
+  color: #c3ccca;
+}
+
+.pi-detail {
+  margin: 16px 0 0;
+  font: 10px/1.7 ui-monospace, monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7f8d8f;
+}
+
+.pi-beta { margin-top: 26px; }
+
+/* Footer */
+.pi-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px clamp(18px, 4vw, 44px) 26px;
+  border-top: 1px solid rgba(176, 138, 74, 0.16);
+  flex-wrap: wrap;
+}
+
+.pi-ticks { display: flex; gap: 8px; }
+
+.pi-ticks button {
+  width: 46px;
+  height: 2px;
+  padding: 0;
+  border: 0;
+  background: rgba(154, 168, 172, 0.24);
+  transition: background 0.2s ease;
+}
+
+.pi-ticks button[data-active='true'] { background: var(--pi-gold); }
+.pi-ticks button[aria-current='step'] { background: var(--pi-accent); }
+
+.pi-actions { display: flex; align-items: center; gap: 12px; }
+
+.pi-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 14px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #9aa8ac;
+  font: 10px/1 ui-monospace, monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.15s ease;
+}
+
+.pi-back:hover { color: var(--pi-text); }
+
+.pi-continue {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 20px;
+  border: 1px solid rgba(127, 232, 208, 0.42);
+  background: rgba(127, 232, 208, 0.1);
+  color: #c9fff3;
+  font: 10px/1 ui-monospace, monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.pi-continue:hover { background: rgba(127, 232, 208, 0.2); border-color: rgba(127, 232, 208, 0.7); transform: translateX(2px); }
+
+.project-intro :focus-visible { outline: 2px solid var(--pi-accent); outline-offset: 3px; }
+
+@media (max-width: 720px) {
+  .pi-stage { align-items: flex-start; padding-top: 8vh; }
+  .pi-foot { flex-direction: column; align-items: flex-start; }
+  .pi-actions { width: 100%; justify-content: space-between; }
+  .pi-detail { text-transform: none; letter-spacing: 0.06em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-intro .pi-orbit { animation: none; }
+  .project-intro .pi-copy { animation: none; }
+  .project-intro .pi-continue:hover { transform: none; }
+}

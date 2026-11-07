@@ -1,0 +1,228 @@
+.beta-page {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: #e9e8e2;
+  background:
+    radial-gradient(ellipse 70% 70% at 82% 16%, rgba(33, 119, 133, .2), transparent 65%),
+    radial-gradient(ellipse 60% 60% at 4% 92%, rgba(143, 92, 49, .15), transparent 70%),
+    radial-gradient(ellipse 90% 55% at 50% 118%, rgba(24, 68, 82, .32), transparent 70%),
+    #03090f;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* The cursor is styled once, globally, so this page matches every other screen
+   instead of drawing a second, native pointer on top of the custom one. */
+.beta-page a { color: inherit; text-decoration: none; }
+
+.beta-stars { position: fixed; inset: 0; z-index: -3; width: 100%; height: 100%; pointer-events: none; }
+
+.beta-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: .17;
+  background-image:
+    linear-gradient(rgba(129, 188, 190, .13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(129, 188, 190, .13) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+  animation: beta-grid-drift 34s linear infinite;
+}
+@keyframes beta-grid-drift { to { background-position: 72px 144px; } }
+
+/* Aurora — three slow-breathing light fields behind everything */
+.beta-aurora { position: fixed; inset: 0; z-index: -2; pointer-events: none; filter: blur(70px); opacity: .5; }
+.beta-aurora span { position: absolute; border-radius: 50%; mix-blend-mode: screen; }
+.beta-aurora span:nth-child(1) { width: 46vw; height: 46vw; left: -12vw; top: -14vw; background: radial-gradient(circle, rgba(46, 160, 158, .34), transparent 68%); animation: beta-breathe 17s ease-in-out infinite; }
+.beta-aurora span:nth-child(2) { width: 38vw; height: 38vw; right: -8vw; top: 22vh; background: radial-gradient(circle, rgba(189, 148, 76, .22), transparent 68%); animation: beta-breathe 23s ease-in-out infinite reverse; }
+.beta-aurora span:nth-child(3) { width: 44vw; height: 44vw; left: 26vw; bottom: -22vw; background: radial-gradient(circle, rgba(38, 92, 160, .26), transparent 70%); animation: beta-breathe 29s ease-in-out infinite; }
+@keyframes beta-breathe {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: .75; }
+  50% { transform: translate3d(4vw, -3vh, 0) scale(1.16); opacity: 1; }
+}
+
+.beta-orbit { position: fixed; z-index: -1; pointer-events: none; border: 1px solid rgba(119, 178, 180, .11); border-radius: 50%; }
+.beta-orbit-one { width: 620px; height: 620px; right: -240px; top: -240px; animation: beta-orbit-spin 60s linear infinite; }
+.beta-orbit-two { width: 820px; height: 820px; right: -340px; top: -340px; border-color: rgba(213, 188, 139, .07); animation: beta-orbit-spin 96s linear infinite reverse; }
+@keyframes beta-orbit-spin { to { transform: rotate(360deg); } }
+.beta-satellite { position: absolute; top: 50%; left: -3px; width: 6px; height: 6px; border-radius: 50%; background: #ffd98a; box-shadow: 0 0 12px rgba(255, 217, 138, .9), 0 0 30px rgba(255, 217, 138, .4); }
+
+/* CRT scanlines, barely there */
+.beta-scan {
+  position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: .05;
+  background: repeating-linear-gradient(to bottom, rgba(190, 230, 230, .5) 0 1px, transparent 1px 4px);
+  mix-blend-mode: overlay;
+}
+
+.beta-header, .beta-footer, .beta-hero, .beta-ticker { width: min(1420px, calc(100% - 80px)); margin-inline: auto; }
+.beta-header { height: 94px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(151, 183, 179, .15); }
+.beta-brand { display: flex; align-items: center; gap: 12px; font: 600 14px 'Share Tech Mono', monospace; letter-spacing: .18em; }
+.beta-brand-mark {
+  display: grid; place-items: center; width: 34px; height: 34px;
+  border: 1px solid rgba(119, 224, 217, .48); color: #80ded4; font-size: 19px;
+  box-shadow: inset 0 0 20px rgba(76, 212, 204, .06);
+  animation: beta-mark-pulse 4.5s ease-in-out infinite;
+}
+@keyframes beta-mark-pulse {
+  0%, 100% { box-shadow: inset 0 0 20px rgba(76, 212, 204, .06), 0 0 0 rgba(128, 222, 212, 0); }
+  50% { box-shadow: inset 0 0 24px rgba(76, 212, 204, .14), 0 0 18px rgba(128, 222, 212, .28); }
+}
+.beta-brand small { display: block; margin-top: 4px; color: #71888a; font-size: 7px; letter-spacing: .26em; }
+.beta-header-link, .beta-footer a { display: inline-flex; align-items: center; gap: 8px; color: #b8c8c6; font: 11px 'Share Tech Mono', monospace; letter-spacing: .06em; transition: color .2s; }
+.beta-header-link:hover, .beta-footer a:hover { color: #7fe5d9; }
+
+.beta-hero { display: grid; grid-template-columns: minmax(370px, .82fr) minmax(520px, 1.18fr); align-items: center; gap: clamp(42px, 5vw, 84px); padding-block: clamp(48px, 7vh, 88px); }
+.beta-copy { max-width: 570px; }
+.beta-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 26px; color: #8eaaa9; font: 10px 'Share Tech Mono', monospace; letter-spacing: .22em; }
+.beta-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: #77ded0; box-shadow: 0 0 14px rgba(119, 222, 208, .8); animation: beta-dot-blink 2.4s ease-in-out infinite; }
+@keyframes beta-dot-blink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.beta-copy h1 { margin: 0; color: #f0eee6; font-size: clamp(52px, 5.5vw, 88px); font-weight: 500; line-height: .98; letter-spacing: -.062em; }
+.beta-copy h1 em {
+  font-family: Georgia, 'Times New Roman', serif; font-weight: 400; font-style: italic;
+  background: linear-gradient(100deg, #d8c099 15%, #fff3d6 38%, #e7bb7b 55%, #d8c099 80%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: beta-gold-sweep 7s ease-in-out infinite;
+}
+@keyframes beta-gold-sweep { 0%, 100% { background-position: 0% 0; } 50% { background-position: 110% 0; } }
+.beta-intro { max-width: 510px; margin: 27px 0 32px; color: #9baaa9; font-size: 14px; line-height: 1.8; }
+
+.beta-form > label { display: block; margin-bottom: 10px; color: #c3ceca; font: 10px 'Share Tech Mono', monospace; letter-spacing: .1em; text-transform: uppercase; }
+.beta-form-row { display: flex; gap: 9px; }
+.beta-form input {
+  min-width: 0; flex: 1; height: 50px; padding: 0 16px;
+  border: 1px solid rgba(140, 179, 176, .25); border-radius: 3px; outline: none;
+  background: rgba(7, 20, 26, .85); color: #edf1e9; font-size: 13px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.beta-form input::placeholder { color: #526b6d; }
+.beta-form input:focus { border-color: #70cfc4; box-shadow: 0 0 0 3px rgba(112, 207, 196, .09), 0 0 26px rgba(112, 207, 196, .12); }
+.beta-form button, .beta-saved a {
+  position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  min-height: 50px; padding: 0 19px; border: 1px solid #e3d2b1; border-radius: 3px;
+  background: #ddcba9; color: #102126; font-size: 12px; font-weight: 650; white-space: nowrap;
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.beta-form button:hover:not(:disabled), .beta-saved a:hover { background: #f0dfbd; transform: translateY(-1px); box-shadow: 0 8px 26px rgba(227, 210, 177, .22); }
+.beta-form button::after, .beta-saved a::after {
+  content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .55), transparent);
+  transform: skewX(-20deg); animation: beta-btn-shine 5.2s ease-in-out infinite;
+}
+@keyframes beta-btn-shine { 0%, 78% { left: -60%; } 92% { left: 130%; } 100% { left: 130%; } }
+.beta-form button:disabled { opacity: .5; cursor: not-allowed !important; }
+.beta-privacy { margin-top: 10px; color: #637c7e; font-size: 10px; line-height: 1.5; }
+.beta-form-status { min-height: 20px; margin-top: 5px; color: #f1a89b; font-size: 11px; line-height: 1.6; }
+
+.beta-saved {
+  position: relative;
+  display: grid; grid-template-columns: auto 1fr; gap: 14px; max-width: 520px; padding: 19px;
+  border: 1px solid rgba(105, 213, 178, .3); border-radius: 4px;
+  background: linear-gradient(160deg, rgba(20, 65, 57, .32), rgba(12, 32, 34, .22));
+  box-shadow: 0 0 40px rgba(105, 213, 178, .07), inset 0 0 60px rgba(105, 213, 178, .04);
+  animation: beta-saved-in .5s cubic-bezier(.2, .9, .3, 1.2);
+}
+@keyframes beta-saved-in { from { opacity: 0; transform: translateY(14px) scale(.985); } }
+.beta-saved::before {
+  content: ''; position: absolute; inset: -1px; border-radius: 5px; pointer-events: none;
+  background: linear-gradient(120deg, transparent 30%, rgba(121, 223, 186, .35) 48%, rgba(231, 187, 123, .3) 55%, transparent 72%);
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  padding: 1px; animation: beta-border-sweep 6s linear infinite;
+}
+@keyframes beta-border-sweep { from { background-position: 150% 0; } to { background-position: -150% 0; } }
+.beta-saved-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(104, 224, 184, .12); color: #79dfba; box-shadow: 0 0 0 0 rgba(121, 223, 186, .5); animation: beta-halo 2.6s ease-out infinite; }
+@keyframes beta-halo { 70% { box-shadow: 0 0 0 12px rgba(121, 223, 186, 0); } 100% { box-shadow: 0 0 0 0 rgba(121, 223, 186, 0); } }
+.beta-saved h2 { margin: 0 0 5px; font-size: 15px; font-weight: 600; }
+.beta-saved p { color: #91aaa3; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.beta-rank { color: #ffd98a; font: 700 13px 'Share Tech Mono', monospace; text-shadow: 0 0 16px rgba(255, 217, 138, .5); }
+.beta-saved a { grid-column: 1 / -1; margin-top: 5px; }
+.beta-invite { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 11px; padding: 10px 12px; border: 1px dashed rgba(227, 210, 177, .35); border-radius: 4px; background: rgba(12, 32, 30, .35); }
+.beta-invite-label { display: flex; align-items: center; gap: 6px; width: 100%; color: #bda980; font: 8px 'Share Tech Mono', monospace; letter-spacing: .18em; text-transform: uppercase; }
+.beta-invite code { flex: 1 1 220px; color: #cfe3dd; font: 11px 'Share Tech Mono', monospace; overflow-wrap: anywhere; user-select: all; }
+.beta-invite-copy { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border: 1px solid rgba(227, 210, 177, .5); border-radius: 3px; background: transparent; color: #ddcba9; font: 10px 'Share Tech Mono', monospace; letter-spacing: .08em; cursor: pointer; transition: background .2s, color .2s, box-shadow .2s; }
+.beta-invite-copy:hover { background: rgba(221, 203, 169, .12); color: #f0dfbd; box-shadow: 0 0 16px rgba(221, 203, 169, .18); }
+.beta-invite-note { margin: 8px 0 0; }
+.beta-features { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 25px; list-style: none; color: #71888a; font: 9px 'Share Tech Mono', monospace; letter-spacing: .07em; text-transform: uppercase; }
+.beta-features li { display: flex; align-items: center; gap: 8px; }
+.beta-features li::before { content: ''; width: 3px; height: 3px; background: #bda980; transform: rotate(45deg); animation: beta-gem 3.2s ease-in-out infinite; }
+.beta-features li:nth-child(2)::before { animation-delay: .5s; }
+.beta-features li:nth-child(3)::before { animation-delay: 1s; }
+@keyframes beta-gem { 0%, 100% { box-shadow: 0 0 0 rgba(189, 169, 128, 0); } 50% { box-shadow: 0 0 9px rgba(189, 169, 128, .9); } }
+
+.beta-film {
+  position: relative; min-width: 0; padding: 1px;
+  border: 1px solid rgba(134, 177, 174, .24); background: rgba(6, 16, 22, .76);
+  box-shadow: 0 35px 90px rgba(0, 0, 0, .35), 0 0 70px rgba(46, 130, 140, .07);
+  transition: transform .45s cubic-bezier(.2, .8, .3, 1), box-shadow .45s;
+}
+.beta-film:hover { transform: perspective(1200px) rotateX(1.4deg) rotateY(-1.6deg) translateY(-4px); box-shadow: 0 48px 110px rgba(0, 0, 0, .42), 0 0 90px rgba(46, 130, 140, .12); }
+.beta-film::before, .beta-film::after { content: ''; position: absolute; width: 20px; height: 20px; pointer-events: none; z-index: 2; }
+.beta-film::before { left: -5px; top: -5px; border-left: 1px solid #80c9c1; border-top: 1px solid #80c9c1; }
+.beta-film::after { right: -5px; bottom: -5px; border-right: 1px solid #bfa87e; border-bottom: 1px solid #bfa87e; }
+.beta-film-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 42px; padding: 0 15px; color: #8ca5a5; font: 8px 'Share Tech Mono', monospace; letter-spacing: .13em; }
+.beta-film-bar span { display: inline-flex; align-items: center; gap: 8px; }
+.beta-film-bar span:last-child { color: #5e7b7c; }
+.beta-video-wrap { position: relative; aspect-ratio: 16 / 9; background: #020508; overflow: hidden; }
+.beta-video-wrap video { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* light bar sweeping across the footage frame, behind the controls */
+.beta-video-wrap::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(100deg, transparent 42%, rgba(150, 220, 220, .07) 50%, transparent 58%);
+  background-size: 260% 100%; animation: beta-film-sweep 8s ease-in-out infinite;
+}
+@keyframes beta-film-sweep { 0%, 100% { background-position: 130% 0; } 50% { background-position: -30% 0; } }
+.beta-film-caption { display: flex; align-items: center; gap: 22px; min-height: 58px; padding: 12px 15px; }
+.beta-film-caption span { flex-shrink: 0; color: #c3ae86; font: 8px 'Share Tech Mono', monospace; letter-spacing: .16em; }
+.beta-film-caption p { color: #7f9697; font-size: 11px; line-height: 1.5; }
+
+/* District ticker between hero and footer */
+.beta-ticker { position: relative; overflow: hidden; border-block: 1px solid rgba(151, 183, 179, .12); padding-block: 13px; margin-top: 26px; mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent); }
+.beta-ticker-track { display: flex; width: max-content; animation: beta-ticker-run 30s linear infinite; }
+.beta-ticker:hover .beta-ticker-track { animation-play-state: paused; }
+.beta-ticker-run { display: flex; align-items: center; gap: 34px; padding-right: 34px; white-space: nowrap; font: 10px 'Share Tech Mono', monospace; letter-spacing: .16em; }
+.beta-ticker-run b { font-weight: 400; opacity: .85; text-shadow: 0 0 14px currentColor; }
+.beta-ticker-run i { color: #4d6a6b; font-style: normal; }
+@keyframes beta-ticker-run { to { transform: translateX(-50%); } }
+
+.beta-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 74px; border-top: 1px solid rgba(151, 183, 179, .15); color: #627b7c; font-size: 11px; }
+.beta-spin { animation: beta-spin .8s linear infinite; }
+.beta-page :focus-visible { outline: 2px solid #82ded2; outline-offset: 4px; }
+@keyframes beta-spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 1050px) {
+  .beta-hero { grid-template-columns: 1fr; gap: 42px; padding-block: 52px; }
+  .beta-copy { max-width: 680px; }
+  .beta-copy h1 { font-size: clamp(56px, 9vw, 82px); }
+  .beta-intro { max-width: 600px; }
+  .beta-film { width: 100%; }
+}
+@media (max-width: 640px) {
+  .beta-header, .beta-footer, .beta-hero, .beta-ticker { width: calc(100% - 36px); }
+  .beta-header { height: 78px; }
+  .beta-header-link { font-size: 9px; }
+  .beta-hero { padding-block: 38px; gap: 34px; }
+  .beta-copy h1 { font-size: clamp(48px, 14.5vw, 68px); }
+  .beta-eyebrow { margin-bottom: 20px; font-size: 8px; }
+  .beta-intro { margin-block: 22px 27px; font-size: 13px; }
+  .beta-form-row { flex-direction: column; }
+  .beta-form button { width: 100%; }
+  .beta-features { gap: 12px; font-size: 8px; }
+  .beta-film-bar { font-size: 7px; }
+  .beta-film-bar span:last-child { display: none; }
+  .beta-film-caption { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .beta-footer { padding-block: 20px; }
+  .beta-aurora { filter: blur(46px); opacity: .4; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .beta-page *, .beta-page *::before, .beta-page *::after { animation: none !important; transition: none !important; }
+  .beta-scan { display: none; }
+}

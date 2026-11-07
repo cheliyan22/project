@@ -1,0 +1,152 @@
+/* Public builder record. Same instrument language as the orbital plate: gold
+   hairlines, Georgia display, mono micro-labels. */
+.pp {
+  --pp-gold: #b08a4a;
+  --pp-line: rgba(176, 138, 74, 0.22);
+  --pp-text: #f4f0e8;
+  --pp-muted: #9aa8ac;
+  --pp-accent: #7fe8d0;
+  position: fixed;
+  inset: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse 90% 60% at 50% 0%, #0b1620 0%, transparent 60%), #05070a;
+  color: var(--pp-text);
+}
+
+.pp-rail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px clamp(18px, 5vw, 56px);
+  border-bottom: 1px solid var(--pp-line);
+}
+
+.pp-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #b9c4c2;
+  text-decoration: none;
+  font: 9px/1 ui-monospace, monospace;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.pp-back:hover { color: var(--pp-text); }
+
+.pp-rail-label {
+  margin: 0;
+  font: 9px/1 ui-monospace, monospace;
+  letter-spacing: 0.24em;
+  color: #7d8a8c;
+}
+
+.pp-state {
+  margin: auto;
+  padding: 32px;
+  max-width: 460px;
+  display: grid;
+  gap: 10px;
+  text-align: center;
+  justify-items: center;
+  font: 11px/1.6 ui-monospace, monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pp-muted);
+}
+
+.pp-state-title { margin: 0; font: 400 24px/1.2 Georgia, serif; letter-spacing: -0.02em; text-transform: none; color: var(--pp-text); }
+.pp-state-body { margin: 0; font: 13px/1.6 Inter, system-ui, sans-serif; letter-spacing: 0; text-transform: none; color: var(--pp-muted); }
+
+.pp-spin { animation: pp-spin 0.9s linear infinite; }
+@keyframes pp-spin { to { transform: rotate(360deg); } }
+
+.pp-plate {
+  width: min(880px, 100% - 36px);
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px) 0 64px;
+}
+
+.pp-kicker {
+  margin: 0 0 14px;
+  font: 9px/1 ui-monospace, monospace;
+  letter-spacing: 0.3em;
+  color: #c8b48c;
+}
+
+.pp-plate h1 {
+  margin: 0;
+  font: 400 clamp(34px, 5vw, 58px)/1.05 Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.035em;
+}
+
+.pp-title {
+  margin: 8px 0 0;
+  font: italic 400 15px/1.4 Georgia, serif;
+  color: #cbbfa6;
+}
+
+.pp-bio { margin: 16px 0 0; max-width: 60ch; font: 14px/1.7 Inter, system-ui, sans-serif; color: #c3ccca; }
+
+.pp-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 1px;
+  margin: 30px 0 0;
+  border: 1px solid var(--pp-line);
+  background: var(--pp-line);
+}
+
+.pp-stats div { padding: 14px 14px 15px; background: #070b0f; }
+.pp-stats dt { font: 8px/1 ui-monospace, monospace; letter-spacing: 0.22em; color: #7d8a8c; }
+.pp-stats dd { margin: 8px 0 0; font: 400 22px/1 ui-monospace, monospace; color: var(--pp-text); }
+
+.pp-badges { margin-top: 34px; }
+.pp-section-label { margin: 0 0 12px; font: 9px/1 ui-monospace, monospace; letter-spacing: 0.24em; color: #c8b48c; }
+.pp-empty { margin: 0; font: 12px/1.6 Inter, sans-serif; color: var(--pp-muted); }
+
+.pp-badges ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+
+.pp-badges li {
+  display: grid;
+  gap: 5px;
+  padding: 12px 13px;
+  border: 1px solid var(--pp-line);
+  border-left: 2px solid var(--rarity, var(--pp-gold));
+  background: rgba(8, 14, 18, 0.8);
+}
+
+.pp-badges strong { font: 600 13px/1.3 Inter, system-ui, sans-serif; }
+.pp-badges span { font: 11px/1.5 Inter, system-ui, sans-serif; color: var(--pp-muted); }
+.pp-badges em { font: 8px/1 ui-monospace, monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rarity, var(--pp-muted)); font-style: normal; }
+
+.pp-actions { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+
+.pp-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border: 1px solid rgba(127, 232, 208, 0.4);
+  background: rgba(127, 232, 208, 0.1);
+  color: #c9fff3;
+  text-decoration: none;
+  font: 9px/1 ui-monospace, monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.pp-action:hover { background: rgba(127, 232, 208, 0.2); border-color: rgba(127, 232, 208, 0.7); }
+
+.pp-action--quiet { border-color: rgba(154, 168, 172, 0.28); background: transparent; color: #b9c4c2; }
+.pp-action--quiet:hover { background: rgba(154, 168, 172, 0.1); border-color: rgba(244, 240, 232, 0.4); }
+
+.pp :focus-visible { outline: 2px solid var(--pp-accent); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-spin { animation: none; }
+}
