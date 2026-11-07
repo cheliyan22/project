@@ -1,0 +1,22 @@
+migrations in order:
+  1. 20260703135603_create_reboot_schema.sql
+  2. 20260703140619_add_detailed_project_fields.sql
+  3. 20260705230258_reboot_full_schema_v2.sql
+  4. 20260706142422_add_profiles_auth.sql
+  5. 20260706154046_badges_leaderboard_founder_circle.sql
+  6. 20260706155248_expand_badges_50.sql
+  7. 20260707133943_reboot_story_features.sql
+  8. 20261025000000_reboot_planet_economy.sql
+  9. 20261025010000_planet_project_appearance.sql
+  10. 20261026000000_reboot_planet_hardening.sql
+  11. 20261028000000_lock_public_writes.sql
+  12. 20261028120000_feedback_roadmap.sql
+  13. 20261030000000_beta_waitlist.sql
+phase 1: all 13 migrations applied cleanly
+wrote C:\Users\CheliyanP\Documents\Qoder\2026-10-25\62299723\reboot-audit\70-full-project-setup.sql (157 KB)
+phase 2: recovered content inserted under the real column types
+phase 3: projects=8 ideas=8 badges=53
+public schema now holds 28 tables
+beta waitlist RPC verified under the anon role
+
+FULL SETUP SCRIPT VALIDATED — safe to paste into the SQL Editor.
